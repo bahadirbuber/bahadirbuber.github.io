@@ -34,33 +34,118 @@
             width: 100px;
             margin-top: 1rem;
         }
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .language-btn {
+            background: #4DA8DA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .language-btn:hover {
+            background: #86C5E0;
+        }
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <h1>Terms of Service</h1>
+    <div class="language-selector">
+        <button class="language-btn" onclick="changeLanguage('en')">EN</button>
+        <button class="language-btn" onclick="changeLanguage('tr')">TR</button>
+    </div>
 
-    <p>Welcome to Unilim! This platform is exclusively for college students to connect and share their experiences. By using this application, you agree to our terms and conditions outlined below.</p>
+    <div id="en-content" class="lang-content">
+        <h1>Terms of Service</h1>
 
-    <h2>Eligibility</h2>
-    <p>To use Unilim, you must:</p>
-    <ul>
-        <li>Have a valid .edu email address from an accredited college or university</li>
-        <li>Be a current student at the institution associated with your email</li>
-        <li>Comply with our community guidelines and code of conduct</li>
-    </ul>
+        <p>Welcome to Unilim! This platform is exclusively for college students to connect and share their experiences. By using this application, you agree to our terms and conditions outlined below.</p>
 
-    <h2>Account Verification</h2>
-    <p>All accounts must be verified using a valid college email address (.edu). Users who attempt to circumvent this requirement will be permanently banned.</p>
+        <h2>Eligibility</h2>
+        <p>To use Unilim, you must:</p>
+        <ul>
+            <li>Have a valid .edu email address from an accredited college or university</li>
+            <li>Be a current student at the institution associated with your email</li>
+            <li>Comply with our community guidelines and code of conduct</li>
+        </ul>
 
-    <h2>Content Guidelines</h2>
-    <p>Users are responsible for their content and must:</p>
-    <ul></ul>
-        <li>Post appropriate content that adheres to academic community standards</li>
-        <li>Respect intellectual property rights</li>
-        <li>Avoid harassment or discriminatory behavior</li>
-    </ul>
+        <h2>Account Verification</h2>
+        <p>All accounts must be verified using a valid college email address (.edu). Users who attempt to circumvent this requirement will be permanently banned.</p>
 
-    <h2>Contact Us</h2>
-    <p>If you have any questions regarding our Terms of Service, please contact us at <a href="mailto:support@secret.engineer">support@secret.engineer</a>.</p>
+        <h2>Content Guidelines</h2>
+        <p>Users are responsible for their content and must:</p>
+        <ul>
+            <li>Post appropriate content that adheres to academic community standards</li>
+            <li>Respect intellectual property rights</li>
+            <li>Avoid harassment or discriminatory behavior</li>
+        </ul>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions regarding our Terms of Service, please contact us at <a href="mailto:support@secret.engineer">support@secret.engineer</a>.</p>
+    </div>
+
+    <div id="tr-content" class="lang-content">
+        <h1>Kullanım Koşulları</h1>
+
+        <p>Unilim'e hoş geldiniz! Bu platform, üniversite öğrencilerinin bağlantı kurması ve deneyimlerini paylaşması için özel olarak tasarlanmıştır. Bu uygulamayı kullanarak, aşağıda belirtilen şartları ve koşulları kabul etmiş olursunuz.</p>
+
+        <h2>Uygunluk</h2>
+        <p>Unilim'i kullanmak için:</p>
+        <ul>
+            <li>Akredite bir kolej veya üniversiteden geçerli bir .edu e-posta adresine sahip olmalısınız</li>
+            <li>E-postanızla ilişkili kurumda mevcut bir öğrenci olmalısınız</li>
+            <li>Topluluk kurallarımıza ve davranış kurallarımıza uymalısınız</li>
+        </ul>
+
+        <h2>Hesap Doğrulama</h2>
+        <p>Tüm hesaplar geçerli bir üniversite e-posta adresi (.edu) kullanılarak doğrulanmalıdır. Bu gerekliliği atlatmaya çalışan kullanıcılar kalıcı olarak yasaklanacaktır.</p>
+
+        <h2>İçerik Kuralları</h2>
+        <p>Kullanıcılar kendi içeriklerinden sorumludur ve şunları yapmalıdır:</p>
+        <ul>
+            <li>Akademik topluluk standartlarına uyan uygun içerikler paylaşmak</li>
+            <li>Fikri mülkiyet haklarına saygı göstermek</li>
+            <li>Taciz veya ayrımcı davranışlardan kaçınmak</li>
+        </ul>
+
+        <h2>Bize Ulaşın</h2>
+        <p>Kullanım Koşullarımız hakkında herhangi bir sorunuz varsa, lütfen <a href="mailto:support@secret.engineer">support@secret.engineer</a> adresinden bizimle iletişime geçin.</p>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(lang + '-content').classList.add('active');
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for stored preference
+            const storedLang = localStorage.getItem('preferredLanguage');
+            
+            // If no stored preference, try to detect browser language
+            if (!storedLang) {
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang && browserLang.startsWith('tr')) {
+                    changeLanguage('tr');
+                } else {
+                    changeLanguage('en');
+                }
+            } else {
+                changeLanguage(storedLang);
+            }
+        });
+    </script>
 </body>
 </html>
