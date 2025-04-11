@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - CollegeDisco</title>
+    <title>Support - Unilim</title>
     <style>
         body {
             background-color: #19263B;
@@ -39,35 +39,118 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .language-btn {
+            background: #4DA8DA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .language-btn:hover {
+            background: #86C5E0;
+        }
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>CollegeDisco Support</h1>
-    <p>Welcome to the support page for CollegeDisco, your university's exclusive social network.</p>
-
-    <h2>Frequently Asked Questions (FAQ)</h2>
-    <ul>
-        <li><strong>How do I verify my college email?</strong> Check your .edu email for a verification link after signing up.</li>
-        <li><strong>Who can see my posts?</strong> Only verified students from your college can view your posts.</li>
-    </ul>
-
-    <h2>Community Guidelines</h2>
-    <p>Respectful communication is key. Follow your institution’s code of conduct while engaging on CollegeDisco.</p>
-
-    <h2>Contact Us</h2>
-    <p>Need assistance? Email us at <a href="mailto:support@secret.engineer">support@secret.engineer</a>.</p>
-
-    <h2>User Guide</h2>
-    <p>Learn how to navigate CollegeDisco, find students, and participate in discussions effectively.</p>
-
-    <h2>Privacy Policy</h2>
-    <p>Read our <a href="https://secret.engineer/collegedisco/privacy-policy.html">Privacy Policy</a> to understand how we handle your data.</p>
-
-    <h2>Terms of Service</h2>
-    <p>Review our <a href="https://secret.engineer/collegedisco/terms.html">Terms of Service</a> to know the guidelines of using CollegeDisco.</p>
+<div class="language-selector">
+    <button class="language-btn" onclick="changeLanguage('en')">EN</button>
+    <button class="language-btn" onclick="changeLanguage('tr')">TR</button>
 </div>
+
+<div class="container">
+    <div id="en-content" class="lang-content">
+        <h1>Unilim Support</h1>
+        <p>Welcome to the support page for Unilim, your university's exclusive social network.</p>
+
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <ul>
+            <li><strong>How do I verify my college email?</strong> Check your .edu email for a verification link after signing up.</li>
+            <li><strong>Who can see my posts?</strong> Only verified students from your college can view your posts.</li>
+        </ul>
+
+        <h2>Community Guidelines</h2>
+        <p>Respectful communication is key. Follow your institution's code of conduct while engaging on Unilim.</p>
+
+        <h2>Contact Us</h2>
+        <p>Need assistance? Email us at <a href="mailto:support@secret.engineer">support@secret.engineer</a>.</p>
+
+        <h2>User Guide</h2>
+        <p>Learn how to navigate Unilim, find students, and participate in discussions effectively.</p>
+
+        <h2>Privacy Policy</h2>
+        <p>Read our <a href="https://secret.engineer/unilim/privacy-policy.html">Privacy Policy</a> to understand how we handle your data.</p>
+
+        <h2>Terms of Service</h2>
+        <p>Review our <a href="https://secret.engineer/unilim/terms.html">Terms of Service</a> to know the guidelines of using Unilim.</p>
+    </div>
+
+    <div id="tr-content" class="lang-content">
+        <h1>Unilim Destek</h1>
+        <p>Üniversitenizin özel sosyal ağı Unilim'in destek sayfasına hoş geldiniz.</p>
+
+        <h2>Sıkça Sorulan Sorular (SSS)</h2>
+        <ul>
+            <li><strong>Üniversite e-postamı nasıl doğrularım?</strong> Kaydolduktan sonra .edu e-posta adresinize gelen doğrulama bağlantısını kontrol edin.</li>
+            <li><strong>Gönderilerimi kimler görebilir?</strong> Sadece üniversitenizden doğrulanmış öğrenciler gönderilerinizi görebilir.</li>
+        </ul>
+
+        <h2>Topluluk Kuralları</h2>
+        <p>Saygılı iletişim esastır. Unilim'de etkileşimde bulunurken kurumunuzun davranış kurallarına uyun.</p>
+
+        <h2>Bize Ulaşın</h2>
+        <p>Yardıma mı ihtiyacınız var? Bize <a href="mailto:support@secret.engineer">support@secret.engineer</a> adresinden e-posta gönderin.</p>
+
+        <h2>Kullanım Kılavuzu</h2>
+        <p>Unilim'de gezinmeyi, öğrencileri bulmayı ve tartışmalara etkili bir şekilde katılmayı öğrenin.</p>
+
+        <h2>Gizlilik Politikası</h2>
+        <p>Verilerinizi nasıl işlediğimizi anlamak için <a href="https://secret.engineer/unilim/privacy-policy.html">Gizlilik Politikamızı</a> okuyun.</p>
+
+        <h2>Hizmet Şartları</h2>
+        <p>Unilim'yu kullanmanın kurallarını bilmek için <a href="https://secret.engineer/unilim/terms.html">Hizmet Şartlarımızı</a> inceleyin.</p>
+    </div>
+</div>
+
+<script>
+    function changeLanguage(lang) {
+        document.querySelectorAll('.lang-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(lang + '-content').classList.add('active');
+        localStorage.setItem('preferredLanguage', lang);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for stored preference
+        const storedLang = localStorage.getItem('preferredLanguage');
+        
+        // If no stored preference, try to detect browser language
+        if (!storedLang) {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang && browserLang.startsWith('tr')) {
+                changeLanguage('tr');
+            } else {
+                changeLanguage('en');
+            }
+        } else {
+            changeLanguage(storedLang);
+        }
+    });
+</script>
 
 </body>
 </html>
