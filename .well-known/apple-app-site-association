@@ -4,7 +4,7 @@
         "details": [
             {
                 "appIDs": [
-                    "6744538680.com.secretengineer.unilim"
+                    "MSA7839NHY.com.secretengineer.unilim"
                 ],
                 "paths": [
                     "*"
@@ -17,7 +17,7 @@
     },
     "webcredentials": {
         "apps": [
-            "6744538680.com.secretengineer.unilim"
+            "MSA7839NHY.com.secretengineer.unilim"
         ]
     }
 }
