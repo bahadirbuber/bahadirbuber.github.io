@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - QuranChat</title>
+    <style>
+        body {
+            background-color: #19263B;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #D3DDE6;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4DA8DA;
+            text-align: center;
+        }
+        h2 {
+            color: #86C5E0;
+            border-bottom: 2px solid #4DA8DA;
+            padding-bottom: 5px;
+        }
+        p, li, a {
+            color: #D3DDE6;
+        }
+        a {
+            color: #6AB0F3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .language-btn {
+            background: #4DA8DA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .language-btn:hover {
+            background: #86C5E0;
+        }
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="language-selector">
+    <button class="language-btn" onclick="changeLanguage('en')">EN</button>
+    <button class="language-btn" onclick="changeLanguage('tr')">TR</button>
+</div>
+
+<div class="container">
+    <div id="en-content" class="lang-content">
+        <h1>QuranChat Support</h1>
+        <p>Welcome to the support page for QuranChat, your AI companion for exploring the Quran.</p>
+
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <ul>
+            <li><strong>How do I ask a question?</strong> Simply type your question into the chatbox and press enter.</li>
+            <li><strong>Can the AI understand different languages?</strong> Currently, the AI primarily supports English.</li>
+        </ul>
+
+        <h2>Community Guidelines</h2>
+        <p>Please use respectful language when interacting with the AI.</p>
+
+        <h2>Contact Us</h2>
+        <p>Need assistance? Email us at <a href="mailto:support@secret.engineer">support@secret.engineer</a>.</p>
+
+        <h2>User Guide</h2>
+        <p>Learn how to best phrase your questions for optimal AI responses.</p>
+
+        <h2>Privacy Policy</h2>
+        <p>Read our <a href="https://secret.engineer/quranchat/privacy-policy.html">Privacy Policy</a> to understand how we handle your data.</p>
+
+        <h2>Terms of Service</h2>
+        <p>Review our <a href="https://secret.engineer/quranchat/terms.html">Terms of Service</a> to know the guidelines of using QuranChat.</p>
+    </div>
+
+    <div id="tr-content" class="lang-content">
+        <h1>QuranChat Destek</h1>
+        <p>Kuran'ı keşfetmek için yapay zeka arkadaşınız QuranChat'in destek sayfasına hoş geldiniz.</p>
+
+        <h2>Sıkça Sorulan Sorular (SSS)</h2>
+        <ul>
+            <li><strong>Nasıl soru sorabilirim?</strong> Sorunuzu sohbet kutusuna yazıp enter'a basmanız yeterlidir.</li>
+            <li><strong>Yapay zeka farklı dilleri anlayabiliyor mu?</strong> Şu anda yapay zeka öncelikli olarak İngilizce'yi desteklemektedir.</li>
+        </ul>
+
+        <h2>Topluluk Kuralları</h2>
+        <p>Lütfen yapay zeka ile etkileşimde bulunurken saygılı bir dil kullanın.</p>
+
+        <h2>Bize Ulaşın</h2>
+        <p>Yardıma mı ihtiyacınız var? Bize <a href="mailto:support@secret.engineer">support@secret.engineer</a> adresinden e-posta gönderin.</p>
+
+        <h2>Kullanım Kılavuzu</h2>
+        <p>Optimum yapay zeka yanıtları için sorularınızı en iyi nasıl ifade edeceğinizi öğrenin.</p>
+
+        <h2>Gizlilik Politikası</h2>
+        <p>Verilerinizi nasıl işlediğimizi anlamak için <a href="https://secret.engineer/quranchat/privacy-policy.html">Gizlilik Politikamızı</a> okuyun.</p>
+
+        <h2>Hizmet Şartları</h2>
+        <p>QuranChat'i kullanmanın kurallarını bilmek için <a href="https://secret.engineer/quranchat/terms.html">Hizmet Şartlarımızı</a> inceleyin.</p>
+    </div>
+</div>
+
+<script>
+    function changeLanguage(lang) {
+        document.querySelectorAll('.lang-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(lang + '-content').classList.add('active');
+        localStorage.setItem('preferredLanguage', lang);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for stored preference
+        const storedLang = localStorage.getItem('preferredLanguage');
+        
+        // If no stored preference, try to detect browser language
+        if (!storedLang) {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang && browserLang.startsWith('tr')) {
+                changeLanguage('tr');
+            } else {
+                changeLanguage('en');
+            }
+        } else {
+            changeLanguage(storedLang);
+        }
+    });
+</script>
+
+</body>
+</html>
