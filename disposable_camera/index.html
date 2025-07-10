@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disposable Camera - Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .event-id {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border: 2px solid #007bff;
+            margin: 20px 0;
+        }
+        .no-event {
+            color: #dc3545;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Disposable Camera</h1>
+        <div id="event-display">
+            <div class="no-event">Event ID bulunamadı</div>
+        </div>
+    </div>
+
+    <script>
+        // URL parametrelerini al
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Sayfa yüklendiğinde event_id'yi kontrol et ve göster
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventId = getUrlParameter('event_id');
+            const displayDiv = document.getElementById('event-display');
+            
+            if (eventId) {
+                displayDiv.innerHTML = `
+                    <div class="event-id">
+                        Event ID: ${eventId}
+                    </div>
+                `;
+            } else {
+                displayDiv.innerHTML = `
+                    <div class="no-event">
+                        Event ID bulunamadı. URL'ye ?event_id=123 parametresi ekleyin.
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 
