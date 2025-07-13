@@ -1,23 +1,24 @@
 {
+    "appclips": {
+        "apps": [
+            "TEAMID123.com.secretengineer.eventcamera.Clip"
+        ]
+    },
     "applinks": {
-        "apps": [],
         "details": [
             {
                 "appIDs": [
-                    "MSA7839NHY.com.secretengineer.unilim"
-                ],
-                "paths": [
-                    "*"
+                    "MSA7839NHY.com.secretengineer.eventcamera.Clip"
                 ],
                 "components": [
-                    {"/": "/*"}
+                    {
+                        "/": "/disposable_camera/*",
+                        "?": {
+                            "event_id": "*"
+                        }
+                    }
                 ]
             }
-        ]
-    },
-    "webcredentials": {
-        "apps": [
-            "MSA7839NHY.com.secretengineer.unilim"
         ]
     }
 }
